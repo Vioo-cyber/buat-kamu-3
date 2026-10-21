@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <!-- Import Font Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Memanggil File CSS Terpisah -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Container Utama -->
+    <div class="container">
+
+        <!-- SLIDE 1: SURAT MASUK (AESTHETIC DECORATED) -->
+        <div class="slide active" id="slide-1">
+            <!-- Hiasan Stiker Pojok -->
+            <div class="card-sticker top-left">🎀</div>
+            <div class="card-sticker top-right">✨</div>
+
+            <h2>Ada Surat Untukmu! 💌</h2>
+            <p>Klik amplop di bawah untuk membukanya yaa...</p>
+            
+            <!-- Area Amplop Berlatar Lingkaran Soft Pink -->
+            <div class="envelope-wrapper">
+                <div class="envelope-glow"></div>
+                <div class="envelope" onclick="openLetter()">
+                    ✉️
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="openLetter()">Buka Surat</button>
+
+            <div class="slide-navigation">
+                <button class="nav-btn" disabled>Kembali</button>
+                <button class="nav-btn" onclick="changeSlide(1)">Lanjut ➔</button>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: BUNGA -->
+        <div class="slide" id="slide-2">
+            <h2>Bunga Cantik Untukmu 🌸</h2>
+            <p>Bunga ini melambangkan indahnya senyum kamu hari ini.</p>
+            
+            <!-- Menggunakan foto bunga lokal -->
+            <img src="bunga.jpg" alt="Bunga" class="slide-img">
+
+            <div class="slide-navigation">
+                <button class="nav-btn" onclick="changeSlide(-1)">❮ Kembali</button>
+                <button class="nav-btn" onclick="changeSlide(1)">Lanjut ➔</button>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: LAGU FAVORIT (CUSTOM AESTHETIC PLAYER) -->
+        <div class="slide" id="slide-3">
+            <h2>Lagu Pembawa Suasana 🎵</h2>
+            <p>Dengarkan lagu ini sebentar ya sambil baca slide selanjutnya...</p>
+            
+            <div class="music-card">
+                <!-- Cover Album Piringan Hitam Berputar -->
+                <div class="album-art" id="album-art">
+                    <img src="cover.webp" alt="Cover Album">
+                </div>
+                
+                <!-- Info Lagu -->
+                <div class="song-info">
+                    <h3>About You</h3>
+                    <p>The 1975</p>
+                </div>
+
+                <!-- Pemutar Audio -->
+                <audio id="custom-audio" src="about-you.mp3"></audio>
+
+                <!-- Tombol Kontrol Play / Pause -->
+                <button class="play-btn" id="play-btn" onclick="togglePlay()">
+                    <span id="play-icon">▶</span>
+                </button>
+            </div>
+
+            <div class="slide-navigation">
+                <button class="nav-btn" onclick="changeSlide(-1)">❮ Kembali</button>
+                <button class="nav-btn" onclick="changeSlide(1)">Lanjut ➔</button>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: KENANGAN FOTO & VIDEO -->
+        <div class="slide" id="slide-4">
+            <h2>Kenangan Bersama 📸</h2>
+            <p>Momen manis yang selalu bikin senyum-senyum sendiri kalau diingat.</p>
+            
+            <!-- Ganti src dengan foto/video kamu nanti -->
+            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500" alt="Kenangan" class="slide-img">
+
+            <div class="media-box">
+                <video controls poster="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Browser kamu tidak mendukung pemutar video.
+                </video>
+            </div>
+
+            <div class="slide-navigation">
+                <button class="nav-btn" onclick="changeSlide(-1)">❮ Kembali</button>
+                <button class="nav-btn" onclick="changeSlide(1)">Lanjut ➔</button>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: SLIDE PENUTUP -->
+        <div class="slide" id="slide-5">
+            <h2>Terima Kasih Ya! ❤️</h2>
+            <p>Makasih udah selalu ada dan nemenin hari-hariku. Love you so much!</p>
+
+            <div class="slide-navigation">
+                <button class="nav-btn" onclick="changeSlide(-1)">❮ Kembali</button>
+                <button class="nav-btn" disabled>Selesai ✨</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL POPUP SURAT AESTHETIC (SLIDE 1) -->
+    <div class="modal" id="letter-modal">
+        <div class="modal-content aesthetic-letter">
+            <span class="close-btn" onclick="closeLetter()">&times;</span>
+            
+            <!-- Stempel Amplop -->
+            <div class="letter-stamp">💌</div>
+            
+            <h2>Pesan Spesial Untukmu</h2>
+            
+            <!-- Kertas Surat -->
+            <div class="letter-paper">
+                <p id="letter-text">
+                    Hai kamu! ❤️<br><br>
+                    Surat ini khusus aku buat untukmu. Cuma mau bilang makasih ya sudah bertahan dari hari yang melehkan dari capenya bekerja, jika kamu butuh tempat cerita selalu ingat ada aku disini yang siap mendengar cerita kamu, semangat buat kamu yaa menjalanin hari selanjutnya, kalau ada apa apa bisa langsung ngomong ke aku aja pasti aku balesin💖,iloveu more dari mantan kamu hehehe.<br><br>
+                    Tetap jadi dirimu yang manis dan hangat yaa! ✨
+                </p>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 15px;" onclick="closeLetter()">Tutup Surat 💖</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT / LOGIKA INTERAKSI -->
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        // Fungsi Pindah Slide
+        function changeSlide(direction) {
+            const currentEl = document.getElementById(`slide-${currentSlide}`);
+            currentEl.classList.remove('active');
+
+            currentSlide += direction;
+
+            if (currentSlide < 1) currentSlide = 1;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+
+            const nextEl = document.getElementById(`slide-${currentSlide}`);
+            nextEl.classList.add('active');
+        }
+
+        // Fungsi Popup Surat
+        function openLetter() {
+            document.getElementById('letter-modal').style.display = 'flex';
+        }
+
+        function closeLetter() {
+            document.getElementById('letter-modal').style.display = 'none';
+        }
+
+        // Logika Pemutar Musik
+        const audio = document.getElementById('custom-audio');
+        const playIcon = document.getElementById('play-icon');
+        const albumArt = document.getElementById('album-art');
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    playIcon.innerText = '❚❚';
+                    albumArt.classList.add('playing');
+                }).catch(err => {
+                    alert("File lagu 'about-you.mp3' belum ditemukan di folder project kamu!");
+                });
+            } else {
+                audio.pause();
+                playIcon.innerText = '▶';
+                albumArt.classList.remove('playing');
+            }
+        }
+
+        audio.onended = function() {
+            playIcon.innerText = '▶';
+            albumArt.classList.remove('playing');
+        };
+
+        // Efek Hati Melayang Berkelanjutan
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(createHeart, 600);
+    </script>
+</body>
+</html>
